@@ -1,8 +1,8 @@
 from flask import Flask, render_template, Response
 from webcam import Webcam
 
-import tensorflow as tf
-from tensorflow import keras
+# import tensorflow as tf
+# from tensorflow import keras
 
 app = Flask(__name__)
 
