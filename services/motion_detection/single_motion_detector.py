@@ -1,12 +1,17 @@
 import numpy as np
 import imutils
 import cv2
+from services.detector import Detector
 
 
-class SingleMotionDetector:
+class SingleMotionDetector(Detector):
     def __init__(self, accumWeight=0.5):
+        super().__init__()
         self.accumWeight = accumWeight
         self.bg = None
+
+    def get_name(self):
+        return "Single motion detection"
 
     def update(self, image):
         if self.bg is None:
