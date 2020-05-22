@@ -1,6 +1,7 @@
 import numpy as np
-import imutils 
+import imutils
 import cv2
+
 
 class SingleMotionDetector:
     def __init__(self, accumWeight=0.5):
@@ -21,7 +22,8 @@ class SingleMotionDetector:
         thresh = cv2.erode(thresh, None, iterations=2)
         thresh = cv2.dilate(thresh, None, iterations=2)
 
-        cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        cnts = cv2.findContours(
+            thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
         # print('Contours : ',cnts)
         (minX, minY) = (np.inf, np.inf)
@@ -29,7 +31,7 @@ class SingleMotionDetector:
 
         if len(cnts) == 0:
             return None
-        
+
         for c in cnts:
             (x, y, w, h) = cv2.boundingRect(c)
             (minX, minY) = (min(minX, x), min(minY, y))
